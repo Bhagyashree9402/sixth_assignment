@@ -1,0 +1,29 @@
+h1{
+    text-align: center;
+    padding-bottom: 3mm;
+    padding-top: 2mm;
+}
+
+.darkmode{
+    background-color: black;
+    color:white;
+}
+
+.favorable{
+    background-color: rgb(13, 109, 13);
+    color: white;
+}
+
+.moderate{
+    background-color: rgb(219, 188, 12);
+    color:white;
+}
+
+.severe{
+    background-color: red;
+    color:white;
+}
+
+.icon{
+    width:10px;
+}
