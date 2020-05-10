@@ -24,6 +24,7 @@ $(document).ready(function () {
         var lastSearchedCity = cities.pop();
         var lastSearchCityID = lastSearchedCity.replace(/ /g, '');
         console.log("last searched city" + lastSearchCityID);
+        //trigger function used to simulating on clicking search button 
         $("#" + lastSearchCityID).trigger('click');
 
 
