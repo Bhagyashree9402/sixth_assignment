@@ -3,9 +3,8 @@ var longitude = 0.0;
 var latitude = 0.0;
 var arrayStack = [];
 
-
 $(document).ready(function () {
-
+    //code for displaying cities dynamically  on web page upon clicking the search button
     if (localStorage.getItem("userInputarray") == null) {
         $("#currentCity").hide();
     } else {
@@ -22,26 +21,21 @@ $(document).ready(function () {
             });
         }
         var cities = localStorage.getItem("userInputarray").split(',');
-
         var lastSearchedCity = cities.pop();
         var lastSearchCityID = lastSearchedCity.replace(/ /g, '');
         console.log("last searched city" + lastSearchCityID);
         $("#" + lastSearchCityID).trigger('click');
 
-        // <li id="sfo" class="list-group-item">San Francisco</li>
+
 
     }
 
     $("#searchBtn").on("click", searchButtonEventfunction);
 
-    // <h5 id="forecastH5" class="row mt-4">5-Day Forecast:</h5>
-
-
-
-
-
 
 });
+
+//function for search button
 function searchButtonEventfunction(e) {
     var Date = moment().format('L');
     var userInput = "";
@@ -74,6 +68,8 @@ function searchButtonEventfunction(e) {
     $("#forecast").remove();
     $("#cloudIcon").remove();
     $("#forecastH5").remove();
+
+    //ajax request for displaying weather data using openweather app
     $.ajax({
         type: "GET",
         url: `https://api.openweathermap.org/data/2.5/weather?q=${userInput}&appid=${apikey}`,
@@ -104,7 +100,7 @@ function searchButtonEventfunction(e) {
         $("#UVIndexLabel").text("UV Index : ");
 
 
-
+        //ajax request for displaying the uv index on web page
         $.ajax({
             type: "GET",
             url: `https://api.openweathermap.org/data/2.5/uvi?appid=${apikey}&lat=${latitude}&lon=${longitude}`,
@@ -114,6 +110,7 @@ function searchButtonEventfunction(e) {
             console.log(responseuv.value);
             $("#UVIndex").text(responseuv.value);
 
+            //color code for uv index
             if (responseuv.value <= 2) {
                 $("#UVIndex").attr("class", "col-1 favorable");
             }
@@ -130,6 +127,7 @@ function searchButtonEventfunction(e) {
      
             </div>`);
 
+        //ajax request for displaying 5 day forecast on web page
         $.ajax({
             type: "GET",
             url: `https://api.openweathermap.org/data/2.5/forecast/?q=${userInput}&appid=${apikey}&units=imperial&count=5`,
@@ -162,6 +160,7 @@ function searchButtonEventfunction(e) {
     var valueFromHtml = $("#" + userInput.replace(/ /g, '')).text();
     console.log('userInput is ' + userInput);
 
+    //code for updating cities if it is not already present the dom
     if (valueFromHtml != userInput) {
         $(".place").append(`<button id="${userInput.replace(/ /g, '')}" class="list-group-item">${userInput}</button>`);
         $("#" + userInput.replace(/ /g, '')).on("click", function (e) {
