@@ -90,7 +90,7 @@ function searchButtonEventfunction(e) {
         console.log(response.coord.lon);
 
         $("#City").text(response.name + "( " + Date + " )");
-        $(".definecity").append(`<div id="cloudIcon" class="col-sm-6"  style="width: 30rem;">
+        $(".definecity").append(`<div id="cloudIcon" class="col-sm-2">
         <img src="http://openweathermap.org/img/w/${response.weather[0].icon}.png"
             class="card-img-top" alt="...">
     </div>`);
