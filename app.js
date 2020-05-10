@@ -4,7 +4,7 @@ var latitude = 0.0;
 var arrayStack = [];
 
 $(document).ready(function () {
-    //code for displaying cities dynamically  on web page upon clicking the search button
+    //code for displaying cities dynamically  on web page upon clicking the search button-search history
     if (localStorage.getItem("userInputarray") == null) {
         $("#currentCity").hide();
     } else {
@@ -160,7 +160,7 @@ function searchButtonEventfunction(e) {
     var valueFromHtml = $("#" + userInput.replace(/ /g, '')).text();
     console.log('userInput is ' + userInput);
 
-    //code for updating cities if it is not already present the dom
+    //code for updating cities if it is not already present in the history
     if (valueFromHtml != userInput) {
         $(".place").append(`<button id="${userInput.replace(/ /g, '')}" class="list-group-item">${userInput}</button>`);
         $("#" + userInput.replace(/ /g, '')).on("click", function (e) {
